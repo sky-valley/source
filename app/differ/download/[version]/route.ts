@@ -10,8 +10,10 @@ export async function GET(
   console.log('[Download] Version requested:', version);
 
   try {
-    // Construct the blob path prefix (without hash suffix)
-    const blobPathPrefix = `differ/${version}`;
+    // Construct the blob path prefix (without hash suffix or .zip extension)
+    // The version param includes .zip, so we need to remove it for prefix matching
+    const versionWithoutExt = version.replace(/\.zip$/, '');
+    const blobPathPrefix = `differ/${versionWithoutExt}`;
     console.log('[Download] Looking for blob prefix:', blobPathPrefix);
 
     // List blobs with the prefix to find the file (with hash suffix)
