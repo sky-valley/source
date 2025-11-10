@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { head } from '@vercel/blob';
+import { list } from '@vercel/blob';
 
 export async function GET(
   request: Request,
@@ -8,18 +8,21 @@ export async function GET(
   const { version } = await params;
 
   try {
-    // Construct the blob path
-    const blobPath = `differ/${version}`;
+    // Construct the blob path prefix (without hash suffix)
+    const blobPathPrefix = `differ/${version}`;
 
-    // Check if the blob exists
-    const blob = await head(blobPath);
+    // List blobs with the prefix to find the file (with hash suffix)
+    const { blobs } = await list({
+      prefix: blobPathPrefix,
+      limit: 1,
+    });
 
-    if (!blob) {
+    if (blobs.length === 0) {
       return new NextResponse('File not found', { status: 404 });
     }
 
     // Redirect to the blob URL (Vercel Blob CDN)
-    return NextResponse.redirect(blob.url);
+    return NextResponse.redirect(blobs[0].url);
   } catch (error) {
     console.error('Error fetching blob:', error);
     return new NextResponse('File not found', { status: 404 });
