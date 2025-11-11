@@ -13,5 +13,17 @@
                 <enclosure url="https://source.skyvalley.ac/differ/Differ16-0.delta" sparkle:deltaFrom="0" length="502750" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="FnZwQhxcG/8iTaR2RoPG6zPPh/oQR6oYAvpb7LLL1lBSU1EiAJyLEbyGWD47xFzDq3z0Gmslb/4NpMKBBBVXAg=="/>
             </sparkle:deltas>
         </item>
+        <item>
+            <title>1.0.1</title>
+            <pubDate>Tue, 11 Nov 2025 09:50:09 +0000</pubDate>
+            <sparkle:version>0</sparkle:version>
+            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<ol>
+<li>Live preview of web server</li>
+<li>Bug fixes</li>
+</ol>]]></description>
+            <enclosure url="https://source.skyvalley.ac/differ/Differ-1.0.1.0.zip" length="8853615" type="application/octet-stream" sparkle:edSignature="rPpKaX40nAxSlt4v1ojiTwndjsAWOjOj8ghnmdL5SH+VTpnD0yOLe/r9Mj3oT7tKULz4tnmVdi2t6LKI0YijDA=="/>
+        </item>
     </channel>
 </rss>
