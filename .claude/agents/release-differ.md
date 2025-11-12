@@ -84,6 +84,49 @@ mv "Differ-${VERSION}.zip" ~/work/skyvalley/source/differ/
 
 **Verify**: Check that the file exists at the destination path.
 
+### 5.5. Create Release Notes (Optional)
+
+**Prompt the user**: "Would you like to add release notes for Differ {VERSION}? (y/n)"
+
+**If yes**:
+
+1. **Collect release notes from user**:
+   - Ask: "Please provide your release notes (plain text with bullets, numbered lists, etc.):"
+   - Accept multi-line plain text input
+   - Support common text formatting:
+     - Lines starting with `-` or `*` (bullets)
+     - Lines starting with `1.`, `2.`, etc. (numbered lists)
+     - Empty lines (paragraph breaks)
+
+2. **Convert plain text to simple HTML**:
+   - Convert bullet lines (`-` or `*`) to `<ul><li>` lists
+   - Convert numbered lines (`1.`, `2.`, etc.) to `<ol><li>` lists
+   - Convert double newlines to `<p>` paragraph breaks
+   - Convert single newlines to `<br>` line breaks
+   - Do NOT include DOCTYPE, html, head, or body tags (this ensures Sparkle embeds the notes)
+
+3. **Write HTML file**:
+   ```bash
+   # Create release notes HTML file with same base name as ZIP
+   cat > ~/work/skyvalley/source/differ/Differ-${VERSION}.html << 'EOF'
+   {converted HTML content}
+   EOF
+   ```
+
+   **Important**: The HTML filename MUST match the ZIP filename exactly (except extension).
+   - ZIP: `Differ-1.0.17.zip`
+   - HTML: `Differ-1.0.17.html`
+
+4. **Verify**: Check that the HTML file was created successfully.
+
+**If no**:
+- Skip to Step 6 (no release notes will be included)
+
+**How this works**:
+- Sparkle's `generate_appcast` tool automatically detects `.html` files with the same base name as ZIP files
+- Simple HTML (without DOCTYPE) gets embedded as `<description><![CDATA[...]]>` in the appcast
+- This happens automatically in Step 6 when `generate_appcast` runs
+
 ### 6. Generate Appcast with Sparkle
 
 ```bash
@@ -95,6 +138,7 @@ cd ~/work/skyvalley/source
 - Automatically find the Sparkle EdDSA private key from the macOS Keychain (no --ed-key-file needed)
 - Generate EdDSA signatures for all ZIP files in differ/
 - Create or update `differ/appcast.xml` with version info, download URLs, and signatures
+- **Auto-detect and embed release notes** from `.html` files that match ZIP filenames (e.g., `Differ-1.0.17.html`)
 - Create delta update files if previous versions exist (e.g., `Differ-1.0.16-delta-from-1.0.15.delta`)
 
 **Expected output**: Should show processing of the ZIP and generation of signatures.
@@ -137,6 +181,7 @@ Print a clear summary with this structure:
 
 Files added to source repository:
   • differ/Differ-{VERSION}.zip ({file-size})
+  {• differ/Differ-{VERSION}.html (if release notes were added)}
   • differ/appcast.xml (updated)
   {• differ/Differ-{VERSION}-delta-from-{prev}.delta (if delta was created)}
 
