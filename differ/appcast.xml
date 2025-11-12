@@ -3,6 +3,22 @@
     <channel>
         <title>Differ</title>
         <item>
+            <title>1.0.2</title>
+            <pubDate>Wed, 12 Nov 2025 10:41:26 +0000</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<ol>
+<li>Auto detect dead code</li>
+<li>Bug fixes</li>
+</ol>
+]]></description>
+            <enclosure url="https://source.skyvalley.ac/differ/Differ-1.0.2.1.zip" length="8963337" type="application/octet-stream" sparkle:edSignature="icGyG+dhGajo4zaBKKrnx+lqvMLS1/zAee7qvibz61TQ8Pt0IrhkJl5lILm7KCDkTo/umQTyfB+YVzpnfsyNBw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ1-0.delta" sparkle:deltaFrom="0" length="1211142" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="RaNro5+yjQV/IFTXTAn3nDhz5vXU6ZdBX9LyiphjABZh1mgBtrKfk9HgmRKX9MEKFBIm1Ni7wLmMjWn2RaMBBA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.1</title>
             <pubDate>Tue, 11 Nov 2025 09:50:09 +0000</pubDate>
             <sparkle:version>0</sparkle:version>
