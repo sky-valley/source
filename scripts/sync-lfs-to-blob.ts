@@ -34,18 +34,31 @@ async function syncLfsToBlob() {
 
   for (const product of products) {
     const productDir = join(productsDir, product);
-    const files = readdirSync(productDir);
 
     console.log(`\n📂 Processing ${product}/ directory...`);
 
-    for (const file of files) {
-      // Only process binary release files (.zip, .delta, .dmg)
-      if (!file.endsWith('.zip') && !file.endsWith('.delta') && !file.endsWith('.dmg')) {
-        continue;
-      }
+    // Recursively find all binary release files
+    const findBinaryFiles = (dir: string, basePath: string): Array<{ filePath: string; blobPath: string }> => {
+      const results: Array<{ filePath: string; blobPath: string }> = [];
+      const entries = readdirSync(dir);
 
-      const filePath = join(productDir, file);
-      const blobPath = `${product}/${file}`;
+      for (const entry of entries) {
+        const fullPath = join(dir, entry);
+        const relativePath = basePath ? `${basePath}/${entry}` : entry;
+
+        if (statSync(fullPath).isDirectory()) {
+          // Recurse into subdirectories
+          results.push(...findBinaryFiles(fullPath, relativePath));
+        } else if (entry.endsWith('.zip') || entry.endsWith('.delta') || entry.endsWith('.dmg')) {
+          results.push({ filePath: fullPath, blobPath: `${product}/${relativePath}` });
+        }
+      }
+      return results;
+    };
+
+    const binaryFiles = findBinaryFiles(productDir, '');
+
+    for (const { filePath, blobPath } of binaryFiles) {
 
       // Check if blob already exists
       if (existingBlobPaths.has(blobPath)) {
