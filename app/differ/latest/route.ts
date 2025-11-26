@@ -66,8 +66,9 @@ export async function GET(request: Request) {
     console.log('[Latest] Redirecting to DMG:', filename);
 
     // Redirect to the version-specific route which will handle the blob lookup
+    // DMGs are stored in the dmg/ subdirectory to avoid conflicts with Sparkle's appcast generation
     const requestUrl = new URL(request.url);
-    const redirectUrl = new URL(`/differ/${filename}`, requestUrl.origin);
+    const redirectUrl = new URL(`/differ/dmg/${filename}`, requestUrl.origin);
 
     return NextResponse.redirect(redirectUrl.toString(), {
       status: 302,
