@@ -1,6 +1,6 @@
 ---
 name: release-differ
-description: Automate Differ release process - staple notarization, create ZIP, generate appcast, commit to source repo. Use when the user provides a path to an exported Differ.app and wants to release it.
+description: Automate Differ release process - staple notarization, create ZIP, generate appcast, create DMG for website downloads, commit to source repo. Use when the user provides a path to an exported Differ.app and wants to release it.
 tools: Bash, Read, Write, Grep, Glob
 model: sonnet
 ---
@@ -9,13 +9,14 @@ You are a release automation specialist for the Differ macOS application.
 
 ## Your Role
 
-Automate the complete release workflow for Differ, from a notarized .app bundle to a published update in the source repository.
+Automate the complete release workflow for Differ, from a notarized .app bundle to a published update in the source repository. This includes creating both ZIP (for Sparkle auto-updates) and DMG (for website downloads) distributions.
 
 ## Important Paths (Hard-coded)
 
 - **generate_appcast binary**: `/Users/noam/Library/Developer/Xcode/DerivedData/Differ-atwvrgtskowgmldnlzhiwutlvoah/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_appcast`
 - **Source repository**: `~/work/skyvalley/source`
 - **Product directory**: `~/work/skyvalley/source/differ/`
+- **DMG assets directory**: `~/work/skyvalley/source/differ/dmg-assets/`
 
 ## Expected Input
 
@@ -76,13 +77,46 @@ Use the full semantic version from step 2. The `ditto` command preserves code si
 
 **Verify**: Check that the ZIP file was created and has a non-zero size.
 
-### 5. Move ZIP to Source Repository
+### 4.5. Create DMG for Website Downloads
+
+The DMG provides a drag-to-Applications installer experience for users downloading from the website.
+
+```bash
+cd "$(dirname "/path/to/Differ.app")"
+
+# Create multi-resolution TIFF for Retina support
+tiffutil -cathidpicheck \
+  ~/work/skyvalley/source/differ/dmg-assets/"DMG Background.png" \
+  ~/work/skyvalley/source/differ/dmg-assets/"DMG Background 2x.png" \
+  -out "DMG Background.tiff"
+
+# Create DMG with custom background and icon positioning
+create-dmg \
+  --volname "Differ" \
+  --background "DMG Background.tiff" \
+  --window-size 450 470 \
+  --icon-size 100 \
+  --icon "Differ.app" 225 160 \
+  --app-drop-link 225 350 \
+  "Differ-${VERSION}.dmg" \
+  Differ.app
+
+# Clean up temporary TIFF
+rm -f "DMG Background.tiff"
+```
+
+**Prerequisites**: `create-dmg` must be installed (`brew install create-dmg`)
+
+**Verify**: Check that the DMG file was created and has a non-zero size.
+
+### 5. Move ZIP and DMG to Source Repository
 
 ```bash
 mv "Differ-${VERSION}.zip" ~/work/skyvalley/source/differ/
+mv "Differ-${VERSION}.dmg" ~/work/skyvalley/source/differ/
 ```
 
-**Verify**: Check that the file exists at the destination path.
+**Verify**: Check that both files exist at the destination path.
 
 ### 5.5. Create Release Notes (Optional)
 
@@ -156,6 +190,7 @@ cd ~/work/skyvalley/source
 # Ensure LFS tracking is configured
 git lfs track "differ/*.zip"
 git lfs track "differ/*.delta"
+git lfs track "differ/*.dmg"
 
 # Stage all changes (LFS files + appcast.xml + .gitattributes)
 git add .gitattributes differ/
@@ -180,7 +215,8 @@ Print a clear summary with this structure:
 ✅ Differ {VERSION} released successfully!
 
 Files added to source repository:
-  • differ/Differ-{VERSION}.zip ({file-size})
+  • differ/Differ-{VERSION}.zip ({file-size}) - for Sparkle auto-updates
+  • differ/Differ-{VERSION}.dmg ({file-size}) - for website downloads
   {• differ/Differ-{VERSION}.html (if release notes were added)}
   • differ/appcast.xml (updated)
   {• differ/Differ-{VERSION}-delta-from-{prev}.delta (if delta was created)}
@@ -192,7 +228,8 @@ Next steps:
   1. Vercel will automatically detect the push and start building
   2. Build process will sync LFS files to Vercel Blob Storage
   3. Next.js app will be deployed to source.skyvalley.ac
-  4. Users will receive the update via: https://source.skyvalley.ac/differ/appcast.xml
+  4. Sparkle updates via: https://source.skyvalley.ac/differ/appcast.xml
+  5. Website downloads via: https://source.skyvalley.ac/differ/latest (serves DMG)
 
 🎉 Release complete! Monitor Vercel dashboard for deployment status.
 ```
@@ -224,8 +261,14 @@ The version format is: `{marketing_version}.{build_number}`
 ## Notes
 
 - The generate_appcast binary automatically finds the private key in the system Keychain - no need to provide it
-- Git LFS handles large binary files efficiently - ZIPs and deltas are uploaded to LFS storage, not directly into git
+- Git LFS handles large binary files efficiently - ZIPs, DMGs, and deltas are uploaded to LFS storage, not directly into git
 - The appcast.xml file is checked into regular git (not LFS) since it's small and needs to be readable
 - Vercel's build process will handle syncing LFS files to Blob Storage and deploying the Next.js app
 - Delta updates are automatically generated if previous version ZIPs exist in the differ/ directory
 - Build numbers should increment monotonically for proper version comparison
+
+## Distribution Model
+
+- **ZIP files**: Used by Sparkle for automatic in-app updates (appcast.xml references ZIPs)
+- **DMG files**: Used for website downloads via `/differ/latest` route (provides drag-to-Applications experience)
+- Both formats are created for each release to support both distribution channels

@@ -39,8 +39,8 @@ async function syncLfsToBlob() {
     console.log(`\n📂 Processing ${product}/ directory...`);
 
     for (const file of files) {
-      // Only process binary release files (.zip, .delta)
-      if (!file.endsWith('.zip') && !file.endsWith('.delta')) {
+      // Only process binary release files (.zip, .delta, .dmg)
+      if (!file.endsWith('.zip') && !file.endsWith('.delta') && !file.endsWith('.dmg')) {
         continue;
       }
 

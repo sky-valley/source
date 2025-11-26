@@ -49,17 +49,21 @@ export async function GET(request: Request) {
     // Extract the download URL from the enclosure
     const downloadUrl = latestItem.enclosure['@_url'];
 
-    // Extract just the filename from the URL
+    // Extract just the filename from the URL and convert to DMG
     // URL format: https://source.skyvalley.ac/differ/Differ-1.0.3.2.zip
-    const filename = downloadUrl.split('/').pop();
+    // Website downloads use DMG (drag-to-Applications), Sparkle updates use ZIP
+    const zipFilename = downloadUrl.split('/').pop();
 
-    if (!filename) {
+    if (!zipFilename) {
       console.error('[Latest] Could not extract filename from URL:', downloadUrl);
       return new NextResponse('Invalid appcast format', { status: 500 });
     }
 
+    // Serve DMG for website downloads instead of ZIP
+    const filename = zipFilename.replace('.zip', '.dmg');
+
     console.log('[Latest] Found latest version:', latestItem.title);
-    console.log('[Latest] Redirecting to:', filename);
+    console.log('[Latest] Redirecting to DMG:', filename);
 
     // Redirect to the version-specific route which will handle the blob lookup
     const requestUrl = new URL(request.url);
