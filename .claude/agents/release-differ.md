@@ -81,28 +81,32 @@ Use the full semantic version from step 2. The `ditto` command preserves code si
 
 The DMG provides a drag-to-Applications installer experience for users downloading from the website.
 
+**Important**: A pre-generated multi-resolution TIFF background file is committed to the repo at `~/work/skyvalley/source/differ/dmg-assets/DMG Background.tiff`. Use this file directly instead of regenerating it.
+
 ```bash
 cd "$(dirname "/path/to/Differ.app")"
 
-# Create multi-resolution TIFF for Retina support
-tiffutil -cathidpicheck \
-  ~/work/skyvalley/source/differ/dmg-assets/"DMG Background.png" \
-  ~/work/skyvalley/source/differ/dmg-assets/"DMG Background 2x.png" \
-  -out "DMG Background.tiff"
+# Use the pre-committed multi-resolution TIFF background
+# (Located at ~/work/skyvalley/source/differ/dmg-assets/DMG Background.tiff)
 
 # Create DMG with custom background and icon positioning
 create-dmg \
   --volname "Differ" \
-  --background "DMG Background.tiff" \
+  --background ~/work/skyvalley/source/differ/dmg-assets/"DMG Background.tiff" \
   --window-size 450 470 \
   --icon-size 100 \
   --icon "Differ.app" 225 160 \
   --app-drop-link 225 350 \
   "Differ-${VERSION}.dmg" \
   Differ.app
+```
 
-# Clean up temporary TIFF
-rm -f "DMG Background.tiff"
+**Note**: If the background TIFF file is missing, regenerate it with:
+```bash
+tiffutil -cathidpicheck \
+  ~/work/skyvalley/source/differ/dmg-assets/"DMG Background.png" \
+  ~/work/skyvalley/source/differ/dmg-assets/"DMG Background 2x.png" \
+  -out ~/work/skyvalley/source/differ/dmg-assets/"DMG Background.tiff"
 ```
 
 **Prerequisites**: `create-dmg` must be installed (`brew install create-dmg`)
