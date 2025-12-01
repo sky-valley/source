@@ -3,6 +3,24 @@
     <channel>
         <title>Differ</title>
         <item>
+            <title>2.0.5</title>
+            <pubDate>Mon, 01 Dec 2025 12:57:24 +0000</pubDate>
+            <sparkle:version>8</sparkle:version>
+            <sparkle:shortVersionString>2.0.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<ul>
+<li>Fix bug in the Claude Code onboarding step</li>
+</ul>]]></description>
+            <enclosure url="https://source.skyvalley.ac/differ/Differ-2.0.5.8.zip" length="4915489" type="application/octet-stream" sparkle:edSignature="OjY8ZQHe9gtxtdeV/itns2qtAC2ZbIc8yHYhff3aa559UnRAFQto4GWvx0zwhtjs5aQSHUiFJmcOheXaV8xaAQ=="/>
+            <sparkle:deltas>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ8-7.delta" sparkle:deltaFrom="7" length="185610" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="mJvhZ8Elj1BpvO2bHCSETKeypsSzDOeMEdcZ0LaGNSMF5zfybgkAra8Hs7SFPX4oLXEkU+6uSfNjEKSWnMNRBg=="/>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ8-6.delta" sparkle:deltaFrom="6" length="219782" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Iy7Y4vBE9pzWyApMV3d5CNbqTb23BWy+hHoNWAAh3ryJZ/4PCUiHydaRajqGUS/JsoMgiM9oNgyjzWi3OqppCQ=="/>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ8-5.delta" sparkle:deltaFrom="5" length="282206" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Bf/fq76uQYkrX/hDxOi86OojghkMstYceB8cS/TN+tKyczQYSh51IPV4RwgCMy1PmSwTGJ2O/UJMuBadWRc7Dg=="/>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ8-4.delta" sparkle:deltaFrom="4" length="511874" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="pxLJlbNPprBtxsF+apfUCgu80g8Kjjbimju8GrwD/00GBJSkjmgb1ayIPJY1nGZCXQiMlmYXJPHocdWdk0RKAQ=="/>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ8-3.delta" sparkle:deltaFrom="3" length="585658" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="AcUhytshunrOT4R7NYWYdq22cmhrTum+7n3cN8T7dQ3/toOH8rO3jrCNFtU/XLF3b5vIKe0/AZlkVxrmSzONDA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>2.0.4</title>
             <pubDate>Fri, 28 Nov 2025 11:24:55 +0000</pubDate>
             <sparkle:version>7</sparkle:version>
@@ -39,24 +57,6 @@
 <li>Fix UI bugs</li>
 <li>Prompt a confirmation before clearing data</li>
 </ul>]]></description>
-        </item>
-        <item>
-            <title>2.0.2</title>
-            <pubDate>Thu, 27 Nov 2025 18:21:43 +0000</pubDate>
-            <sparkle:version>5</sparkle:version>
-            <sparkle:shortVersionString>2.0.2</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<ul>
-<li>Session correlation bug fixes</li>
-</ul>]]></description>
-            <enclosure url="https://source.skyvalley.ac/differ/Differ-2.0.2.5.zip" length="4893189" type="application/octet-stream" sparkle:edSignature="nKcVO8jT53PrB56KM9UJ90IZjr3QeArDsWCFmW7lL/5JIMvrLfL51TQfnk58k17X4gezk/vf1zIAhsJZReMoCw=="/>
-            <sparkle:deltas>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ5-4.delta" sparkle:deltaFrom="4" length="402298" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="FqIEMswRTYKViN2gTPeYyi4xPxZhbdbYrarcbAEz14v2VFqrKPHK2dzbtve6bcG+jEw7L5VhUPmGS+VYKv0iAQ=="/>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ5-3.delta" sparkle:deltaFrom="3" length="519834" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Gx8MzIrLHCX1/+A0J1XVbcfiuNs5cUjegCqz0Or0aFkW+LiCNp74Q0rz412oLb0KAYSR1kdR33O9Dupkk981CQ=="/>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ5-2.delta" sparkle:deltaFrom="2" length="2505482" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="I7gp/54e+9K0UASLUjAKZLEtDB/ZDikvNVHuxjQ/oKFL3HHwzkAw84+Wc2CISQ+11BQLnq5pVMpor6zhwvV1Aw=="/>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ5-1.delta" sparkle:deltaFrom="1" length="2506226" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="pD25NiriEKIt/468JKDyyH74x+i+Q85Vot6rABRgMfudYAR6t22iCr9ObIiUKQiQMX6z+i7lo8E7RKyrtnmnDA=="/>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ5-0.delta" sparkle:deltaFrom="0" length="2504282" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="q6VvvIoTFIJg5xHMKh/2Dhqwu6tCXb3tYlACgitLbThPAZ65Mer+pvFYYw6hdubQpnb1LDloL1r7td9mrStQDA=="/>
-            </sparkle:deltas>
         </item>
     </channel>
 </rss>
