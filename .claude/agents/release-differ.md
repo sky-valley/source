@@ -15,13 +15,15 @@ Automate the complete release workflow for Differ, from a notarized .app bundle 
 
 - **generate_appcast binary**: `/Users/noam/Library/Developer/Xcode/DerivedData/Differ-atwvrgtskowgmldnlzhiwutlvoah/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_appcast`
 - **Source repository**: `~/work/skyvalley/source`
-- **Product directory**: `~/work/skyvalley/source/differ/`
+- **Product directory**: `~/work/skyvalley/source/differ/` (ZIPs, appcast, deltas)
+- **DMG directory**: `~/work/skyvalley/source/differ/dmg/` (DMGs for website downloads)
 - **DMG assets directory**: `~/work/skyvalley/source/differ/dmg-assets/`
 
 ## Expected Input
 
-The user will provide the path to an exported, notarized Differ.app bundle. Example:
-- `/path/to/Differ.app`
+The user will provide:
+- **Required**: Path to an exported, notarized Differ.app bundle (e.g., `/path/to/Differ.app`)
+- **Optional**: Release notes for this version (plain text with bullets, numbered lists, etc.)
 
 ## Release Process
 
@@ -50,6 +52,21 @@ VERSION="${MARKETING_VERSION}.${BUILD_NUMBER}"
 ```
 
 Use this VERSION string for all filenames and messages (e.g., "1.0.15", "1.0.16", "2.0.23").
+
+### 2.5. Check for Release Notes
+
+**Important**: This step ensures all user input is collected BEFORE building artifacts, avoiding duplicate work if the agent needs to be re-spawned.
+
+1. **Check if release notes were provided in the prompt**:
+   - If the user included release notes in the initial prompt, store them for use in Step 5.5
+   - If no release notes were provided, prompt the user: "Would you like to add release notes for Differ {VERSION}? (y/n)"
+
+2. **If the user wants to add release notes**:
+   - Ask: "Please provide your release notes (plain text with bullets, numbered lists, etc.):"
+   - Store the response for use in Step 5.5
+
+3. **If no release notes are needed**:
+   - Proceed to Step 3 (release notes will be skipped in Step 5.5)
 
 ### 3. Staple Notarization
 
@@ -116,34 +133,32 @@ tiffutil -cathidpicheck \
 ### 5. Move ZIP and DMG to Source Repository
 
 ```bash
+# Move ZIP to product directory (for Sparkle)
 mv "Differ-${VERSION}.zip" ~/work/skyvalley/source/differ/
-mv "Differ-${VERSION}.dmg" ~/work/skyvalley/source/differ/
+
+# Move DMG to separate subdirectory (to avoid generate_appcast duplicate error)
+mkdir -p ~/work/skyvalley/source/differ/dmg/
+mv "Differ-${VERSION}.dmg" ~/work/skyvalley/source/differ/dmg/
 ```
 
-**Verify**: Check that both files exist at the destination path.
+**Important**: DMGs must be in a separate subdirectory because `generate_appcast` treats ZIP and DMG with the same version as duplicates.
+
+**Verify**: Check that both files exist at their destination paths.
 
 ### 5.5. Create Release Notes (Optional)
 
-**Prompt the user**: "Would you like to add release notes for Differ {VERSION}? (y/n)"
+**Use the release notes collected in Step 2.5** (do NOT prompt again here).
 
-**If yes**:
+**If release notes were provided**:
 
-1. **Collect release notes from user**:
-   - Ask: "Please provide your release notes (plain text with bullets, numbered lists, etc.):"
-   - Accept multi-line plain text input
-   - Support common text formatting:
-     - Lines starting with `-` or `*` (bullets)
-     - Lines starting with `1.`, `2.`, etc. (numbered lists)
-     - Empty lines (paragraph breaks)
-
-2. **Convert plain text to simple HTML**:
+1. **Convert plain text to simple HTML**:
    - Convert bullet lines (`-` or `*`) to `<ul><li>` lists
    - Convert numbered lines (`1.`, `2.`, etc.) to `<ol><li>` lists
    - Convert double newlines to `<p>` paragraph breaks
    - Convert single newlines to `<br>` line breaks
    - Do NOT include DOCTYPE, html, head, or body tags (this ensures Sparkle embeds the notes)
 
-3. **Write HTML file**:
+2. **Write HTML file**:
    ```bash
    # Create release notes HTML file with same base name as ZIP
    cat > ~/work/skyvalley/source/differ/Differ-${VERSION}.html << 'EOF'
@@ -155,9 +170,9 @@ mv "Differ-${VERSION}.dmg" ~/work/skyvalley/source/differ/
    - ZIP: `Differ-1.0.17.zip`
    - HTML: `Differ-1.0.17.html`
 
-4. **Verify**: Check that the HTML file was created successfully.
+3. **Verify**: Check that the HTML file was created successfully.
 
-**If no**:
+**If no release notes were provided**:
 - Skip to Step 6 (no release notes will be included)
 
 **How this works**:
@@ -194,7 +209,7 @@ cd ~/work/skyvalley/source
 # Ensure LFS tracking is configured
 git lfs track "differ/*.zip"
 git lfs track "differ/*.delta"
-git lfs track "differ/*.dmg"
+git lfs track "differ/dmg/*.dmg"
 
 # Stage all changes (LFS files + appcast.xml + .gitattributes)
 git add .gitattributes differ/
@@ -220,7 +235,7 @@ Print a clear summary with this structure:
 
 Files added to source repository:
   • differ/Differ-{VERSION}.zip ({file-size}) - for Sparkle auto-updates
-  • differ/Differ-{VERSION}.dmg ({file-size}) - for website downloads
+  • differ/dmg/Differ-{VERSION}.dmg ({file-size}) - for website downloads
   {• differ/Differ-{VERSION}.html (if release notes were added)}
   • differ/appcast.xml (updated)
   {• differ/Differ-{VERSION}-delta-from-{prev}.delta (if delta was created)}
@@ -273,6 +288,7 @@ The version format is: `{marketing_version}.{build_number}`
 
 ## Distribution Model
 
-- **ZIP files**: Used by Sparkle for automatic in-app updates (appcast.xml references ZIPs)
-- **DMG files**: Used for website downloads via `/differ/latest` route (provides drag-to-Applications experience)
+- **ZIP files** (`differ/*.zip`): Used by Sparkle for automatic in-app updates (appcast.xml references ZIPs)
+- **DMG files** (`differ/dmg/*.dmg`): Used for website downloads via `/differ/latest` route (provides drag-to-Applications experience)
+- DMGs are kept in a separate subdirectory to avoid `generate_appcast` treating them as duplicate updates
 - Both formats are created for each release to support both distribution channels
