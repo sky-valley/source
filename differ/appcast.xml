@@ -3,6 +3,25 @@
     <channel>
         <title>Differ</title>
         <item>
+            <title>2.0.6</title>
+            <pubDate>Thu, 04 Dec 2025 12:01:23 +0000</pubDate>
+            <sparkle:version>9</sparkle:version>
+            <sparkle:shortVersionString>2.0.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<ul>
+<li>Added a copy button to prompts</li>
+<li>Fix onboarding bugs</li>
+</ul>]]></description>
+            <enclosure url="https://source.skyvalley.ac/differ/Differ-2.0.6.9.zip" length="5381760" type="application/octet-stream" sparkle:edSignature="CjMvKdzbGr73w1j0AicF2c8z0WCR4RwiEyCHK7JDkWY+WR/wEL76+NHcbyQrUj3aOgWwXRkjfhdhKAjVuaFpBw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ9-8.delta" sparkle:deltaFrom="8" length="686298" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="mTI72i5VdXTzvz4wh6FxTjeeDoPqErTosTmOekYVZW/4jbwQC3/ECji5xfA1ZMVSwFopqybrMpQs/Jp2EyvvAQ=="/>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ9-7.delta" sparkle:deltaFrom="7" length="712338" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="CgAij49K+m4EUpkGWVxBan9+odYst3B0dkKMKX9YBIzEvJvRbGVkW/Dp/BLUgBnRliDZ6lif9xSk7y5eVMzmBw=="/>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ9-6.delta" sparkle:deltaFrom="6" length="728390" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="wqxridP4Wt45tmf00h0//aYE21y4se2IUVCdn6c938+LOCC9SxkmtAjnzFVjp9rVAWiJ9mEuy1OKRK1NvNtDDA=="/>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ9-5.delta" sparkle:deltaFrom="5" length="762270" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="kavSHELsGeELOlpjhqZ79E9sbf0Vn2k63hYc/wdy/E2z9ooSXMwayVF5DxWJdo06O+518A0A48ffyR48YncgCg=="/>
+                <enclosure url="https://source.skyvalley.ac/differ/Differ9-4.delta" sparkle:deltaFrom="4" length="970550" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="sn5YqZtUwr2ZImmoJKzXYPezOMjVVLiXbZC+WiVjlmff7dCI6bUIk/dhfoWH/aP07fPbRs/Oz6v/xcP1gkOIAg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>2.0.5</title>
             <pubDate>Mon, 01 Dec 2025 12:57:24 +0000</pubDate>
             <sparkle:version>8</sparkle:version>
@@ -38,25 +57,6 @@
                 <enclosure url="https://source.skyvalley.ac/differ/Differ7-3.delta" sparkle:deltaFrom="3" length="567394" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="VqRTnTJeIRCYdpMUFa5RJP3a2vC6g3QvSz/bykvf52M2+JHxPJJbuIQ0bT3duRtbGLw9DsKyXr9L3Sdes5ksCw=="/>
                 <enclosure url="https://source.skyvalley.ac/differ/Differ7-2.delta" sparkle:deltaFrom="2" length="2519442" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="lEniX3lbbqlyfMWO7WAOpJXkRIrXHKcq2NIj3JPZnCgcirFfINAnOQJKOVl1nnBpCtv3X+CUSfi9Qunbv6m0AA=="/>
             </sparkle:deltas>
-        </item>
-        <item>
-            <title>2.0.3</title>
-            <pubDate>Thu, 27 Nov 2025 22:03:49 +0000</pubDate>
-            <sparkle:version>6</sparkle:version>
-            <sparkle:shortVersionString>2.0.3</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://source.skyvalley.ac/differ/Differ-2.0.3.6.zip" length="4903398" type="application/octet-stream" sparkle:edSignature="d55o0VXYi4wQpRZzEB96g3hcey1IXtD1eOquGuhMx4CLhzkADrvBqDYggNF5mktpb7XMRx0USmax/XUcrJ5vAQ=="/>
-            <sparkle:deltas>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ6-5.delta" sparkle:deltaFrom="5" length="231182" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="ikJTr3+eFQHIIQI01fMCZBLMNX+FhOpUpD23c5bhd2Nsqh48WNbM+graRBIkXMLYlImO1gjH2v349ENkgs7wDw=="/>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ6-4.delta" sparkle:deltaFrom="4" length="470094" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="q0BDnxHnlOwsnieNGWvol4tmljUTPBvcWDYHvlc7XYKu+8Y1/vs9E5PCq0kO+ksOZfTXLeYHXu++p0KzPx35Dw=="/>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ6-3.delta" sparkle:deltaFrom="3" length="559298" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="KjS6nq4l9Dv9ol3tu68N4DhfpDV1/u8C4ggCQmz5ksgSmNc9RmnKWDQgsskc9eZoButfAJ5voC8h84gWDXQMDw=="/>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ6-2.delta" sparkle:deltaFrom="2" length="2513806" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="HwvBYUU/KkNEe5W9fVTE15MdJtZ/V3muUp6Mzq4+6k04onFq0Tn+Li/WwJ2RSzoaVr0Uy+tULB8j1O+1g+DhCA=="/>
-                <enclosure url="https://source.skyvalley.ac/differ/Differ6-1.delta" sparkle:deltaFrom="1" length="2514278" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="858560" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="IQVX7LXW1gaqZlya5AC5uGRSjkpeoZJV32XcmQ37MbdPGEGvfWeELWdOB6pZM5ZWUOORCkyoWANtyEGG4QEdAQ=="/>
-            </sparkle:deltas>
-            <description><![CDATA[<ul>
-<li>Fix UI bugs</li>
-<li>Prompt a confirmation before clearing data</li>
-</ul>]]></description>
         </item>
     </channel>
 </rss>
