@@ -3,3 +3,5 @@ differ/*.zip filter=lfs diff=lfs merge=lfs -text
 differ/*.delta filter=lfs diff=lfs merge=lfs -text
 differ/*.dmg filter=lfs diff=lfs merge=lfs -text
 differ/dmg/*.dmg filter=lfs diff=lfs merge=lfs -text
+differ/old_updates/*.zip filter=lfs diff=lfs merge=lfs -text
+differ/old_updates/*.delta filter=lfs diff=lfs merge=lfs -text
