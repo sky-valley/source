@@ -1,0 +1,66 @@
+=== Differ Release Log ===
+Started: Fri  5 Dec 2025 11:29:54 GMT
+=========================
+
+[STEP 1] Validate Input
+$ test -d ~/Downloads/Differ.app
+✓ Directory exists
+✓ Info.plist exists
+SUCCESS: Differ.app is valid
+
+[STEP 2] Extract Version Information
+$ Extract CFBundleShortVersionString and CFBundleVersion
+Marketing Version: 2.0.9
+Build Number: 12
+Full Version: 2.0.9.12
+
+[STEP 3] Staple Notarization - SUCCESS
+The staple and validate action worked!
+
+[STEP 4] Create ZIP Archive - SUCCESS
+Created: Differ-2.0.9.12.zip (5.1M)
+
+[STEP 4.5] Create DMG - SUCCESS
+Created: Differ-2.0.9.12.dmg (5.1M)
+
+[STEP 5] Move Files to Repository - SUCCESS
+ZIP moved to: differ/Differ-2.0.9.12.zip
+DMG moved to: differ/dmg/Differ-2.0.9.12.dmg
+
+[STEP 5.5] Create Release Notes - SUCCESS
+Created: Differ-2.0.9.12.html
+Content: Energy efficiency fixes
+
+[STEP 6] Generate Appcast
+Wrote 1 new update, updated 2 existing updates, and removed 1 old update in appcast.xml
+Moved 7 old update files to old_updates
+
+[STEP 7] Commit to Git with LFS
+Tracking "differ/old_updates/*.delta"
+[main 07d2de0] Release Differ 2.0.9.12
+ 51 files changed, 41 insertions(+), 19 deletions(-)
+ create mode 100644 differ/Differ-2.0.9.12.html
+ create mode 100644 differ/Differ-2.0.9.12.zip
+ create mode 100644 differ/Differ12-10.delta
+ create mode 100644 differ/Differ12-11.delta
+ create mode 100644 differ/Differ12-7.delta
+ create mode 100644 differ/Differ12-8.delta
+ create mode 100644 differ/Differ12-9.delta
+ create mode 100644 differ/dmg/Differ-2.0.9.12.dmg
+ rename differ/{ => old_updates}/Differ-2.0.1.4.html (100%)
+ rename differ/{ => old_updates}/Differ-2.0.1.4.zip (100%)
+ rename differ/{ => old_updates}/Differ9-4.delta (100%)
+ rename differ/{ => old_updates}/Differ9-5.delta (100%)
+ rename differ/{ => old_updates}/Differ9-6.delta (100%)
+ rename differ/{ => old_updates}/Differ9-7.delta (100%)
+ rename differ/{ => old_updates}/Differ9-8.delta (100%)
+Uploading LFS objects: 100% (41/41), 84 MB | 4.1 MB/s, done.
+To github.com:sky-valley/source.git
+   24e5f19..07d2de0  main -> main
+
+[STEP 8] Push to Remote - SUCCESS
+Uploaded 41 LFS objects (84 MB)
+
+=========================
+Completed: Fri  5 Dec 2025 11:34:10 GMT
+=== Release Complete ===
